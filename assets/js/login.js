@@ -153,7 +153,9 @@ if (form) {
         t: Date.now()
       };
 
-      (remember ? localStorage : sessionStorage).setItem('pt_s', JSON.stringify(sessionData));
+      // Store persistent session in localStorage for 30 days
+      localStorage.setItem('pt_s', JSON.stringify(sessionData));
+      sessionStorage.setItem('pt_s', JSON.stringify(sessionData));
 
       // Show success feedback
       submitBtn.style.background = 'var(--ok)';
