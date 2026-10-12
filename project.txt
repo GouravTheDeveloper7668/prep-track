@@ -1,0 +1,568 @@
+# Build a Complete Personal Study Progress Tracker Web App
+
+Act as a senior frontend developer, UI/UX designer, and JavaScript architect. Build a complete, polished, responsive web application called **"PrepTrack — My 120-Day Interview Journey"**.
+
+The application is for my personal preparation for a Laravel Developer job in Noida or Gurgaon within the next 90–120 days.
+
+Do not create just a UI mockup. All buttons, forms, charts, calendar interactions, checklists, data persistence, and JSON import/export features must work.
+
+## 1. Technology Stack and Project Structure
+
+Use only:
+
+- HTML5
+- CSS3 with a well-organized Core CSS design system
+- Vanilla JavaScript (ES6+)
+- Browser localStorage for persistent application data
+- Chart.js for charts
+- Font Awesome 6 icons
+- Google Fonts: a cursive font such as Caveat for selected headings and accents, paired with Inter or Poppins for readable body text
+
+Use CDN libraries where appropriate. The app should work locally without a backend or database.
+
+Create exactly these two application pages:
+
+- `login.php`
+- `index.php`
+
+Additional optional assets:
+- `assets/css/style.css`
+- `assets/js/app.js`
+- `assets/js/login.js`
+- `assets/js/storage.js`
+- `assets/js/calendar.js`
+- `assets/js/charts.js`
+
+If practical, deliver all project files and explain how to run them locally.
+
+## 2. Static Login System
+
+Create an attractive login screen with:
+
+- Email or username field
+- Password field with show/hide functionality
+- Remember session option
+- Login button
+- Inline validation and error messages
+- A motivational message about the 120-day journey
+
+Use configurable static credentials stored in the JavaScript configuration. Do not hardcode a real personal password into any remote service.
+
+Example demo credentials:
+- Username: `sonu`
+- Password: `Prep@2026`
+
+These are demonstration credentials only and must be easy to change.
+
+Requirements:
+
+- Redirect to `index.php` only after successful login.
+- If a user opens `index.php` without an active login session, redirect to `login.php`.
+- Add a logout button that clears the login session and redirects to the login page.
+- Use `sessionStorage` for the default session and optionally `localStorage` for the Remember Me option.
+- Do not store passwords in localStorage.
+- Display a warning in the documentation that client-side static authentication is not secure enough for a publicly deployed application. This is a personal local application.
+
+## 3. Design System and UI
+
+Create a modern, premium productivity dashboard.
+
+Visual direction:
+- Dark navy background with elegant purple and blue accents
+- Optional light/dark theme switch
+- Soft borders, subtle shadows, rounded cards and clean spacing
+- A sidebar with icons and active navigation states
+- Responsive layout for desktop, tablet and mobile
+- Smooth but restrained transitions
+- Toast notifications instead of intrusive alerts
+- Skeleton or loading states only where useful
+- Empty states when there are no tasks or records
+
+Fonts:
+- Use a cursive Google Font such as Caveat for the application logo, motivational quotes and selected section headings.
+- Use Inter or Poppins for body text, form labels, tables and dashboard numbers.
+- Do not use cursive fonts for long paragraphs or essential data.
+
+Use Font Awesome icons consistently. Include a reusable CSS variables system:
+
+- Colors
+- Typography
+- Spacing
+- Border radius
+- Shadows
+- Card styles
+- Buttons
+- Inputs
+- Badges
+- Progress bars
+- Modal dialogs
+- Toast notifications
+
+Create reusable components through CSS classes and JavaScript rendering functions. Avoid repeating styling rules.
+
+## 4. Dashboard Layout
+
+Build a responsive sidebar containing:
+
+1. Dashboard
+2. Today's Tasks
+3. Daily Routine
+4. Weekly Routine
+5. Calendar
+6. Subjects
+7. Analytics
+8. Festivals & Holidays
+9. JSON Import / Export
+10. Settings
+
+The dashboard header should display:
+- Current date and day
+- Greeting based on local time
+- Current preparation day, such as Day 12 of 120
+- Days remaining until the selected target date
+- Quick-add task button
+- Theme toggle
+- Logout
+
+Create KPI cards for:
+- Today's completion percentage
+- Tasks completed today
+- Total study hours
+- Current study streak
+- Weekly completion rate
+- Overall preparation progress
+
+All metrics must be calculated from stored data, not hardcoded sample numbers.
+
+Include:
+- Today's task checklist
+- Subject-wise progress cards
+- Weekly study-hours chart
+- Daily completion trend
+- Monthly calendar heatmap
+- Upcoming scheduled tasks
+- Missed tasks requiring attention
+- A motivational quote
+
+## 5. Study Subjects and Default Routine
+
+Preconfigure these six study areas:
+
+1. English Communication
+2. DSA and Pattern Practice
+3. SQL
+4. Laravel Architecture
+5. Laravel Technical and Theoretical Questions
+6. Scenario-Based Discussions
+
+Create a default daily target schedule:
+
+| Subject | Daily target |
+| English Communication | 30 minutes |
+| DSA and Pattern Practice | 45 minutes |
+| SQL | 30 minutes |
+| Laravel Architecture and Technical Questions | 60 minutes |
+| Theory and Scenario Discussion | 45 minutes |
+
+Total target: 210 minutes (3 hours 30 minutes), excluding breaks.
+
+Allow the user to edit durations, add subjects, archive subjects, and assign custom colours or icons.
+
+The user must be able to track both planned and actual study time.
+
+## 6. Daily Task Manager
+
+Build a complete task management interface.
+
+Every task should support:
+
+- Task title
+- Description
+- Subject/category
+- Planned date
+- Start time (optional)
+- Duration in minutes
+- Priority: Low, Medium, High
+- Status: Pending, In Progress, Completed, Missed, Cancelled
+- Checklist items
+- Notes
+- Actual time spent
+- Completion timestamp
+- Optional recurring schedule
+- Optional reminder time
+
+Features:
+- Create, edit, duplicate and delete tasks.
+- Mark a task as completed using a checkbox.
+- Automatically update completion percentages and charts.
+- Record actual study duration.
+- Add notes about what was learned.
+- Filter tasks by subject, status, priority and date.
+- Search tasks.
+- Sort tasks by time or priority.
+- Show a daily completion progress bar.
+- Warn the user before deleting important records.
+
+Create a prominent "Define Today's Tasks" section. Allow me to create today's tasks manually, copy a previous day's routine, or generate tasks from an existing daily or weekly routine.
+
+Do not overwrite existing tasks when generating a routine. Detect duplicates and ask whether to skip or replace them.
+
+## 7. Daily and Weekly Routine Builder
+
+I want both options:
+
+### Daily Routine
+
+Allow me to create a routine for one specific date.
+
+Example:
+- 30 minutes English
+- 45 minutes DSA
+- 30 minutes SQL
+- 60 minutes Laravel
+- 45 minutes theory and scenarios
+
+I should be able to choose which subjects to include, change task durations, reorder tasks, add custom tasks and save the routine.
+
+### Weekly Routine
+
+Allow me to create a reusable routine for Monday through Sunday.
+
+Each day should have configurable tasks, duration, subject and preferred time.
+
+For example:
+- Monday: Patterns, SQL joins, Laravel MVC
+- Tuesday: Arrays, SQL aggregates, middleware
+- Wednesday: Relationships, Eloquent and scenarios
+
+Allow me to:
+- Set different routines for each weekday.
+- Leave certain days as rest days.
+- Copy a routine to another weekday.
+- Edit, duplicate and delete routines.
+- Choose the start date and optional end date.
+- Generate scheduled tasks for a selected date range.
+- Preview generated tasks before saving.
+- Avoid duplicate tasks during generation.
+- Change an individual day's tasks without modifying the reusable routine.
+
+Support one-time routines and recurring weekly routines.
+
+## 8. Calendar and Attendance Tracking
+
+Build a complete monthly calendar with previous/next month controls and a Today button.
+
+Each date should have a clear status:
+
+- Green: all planned tasks completed
+- Blue: partially completed
+- Red: planned study missed
+- Grey: rest day or no study planned
+- Orange: festival or holiday
+- Purple: future scheduled tasks
+
+Use accessible icons or labels in addition to colours.
+
+Clicking a date should open a detail panel showing:
+- All planned tasks
+- Completed and pending tasks
+- Actual study time
+- Daily notes
+- Completion percentage
+- Festival or holiday information
+- Rescheduling controls
+
+Track days when I studied and days when I did not.
+
+Important rules:
+- Do not mark a future date as missed.
+- Do not mark a date as missed if it was intentionally configured as a rest day.
+- If a date has no planned tasks, do not count it as a missed study day.
+- Derive missed status from the planned tasks and date; preserve explicit holiday and rest-day designations.
+- Allow me to manually change a day to Rest Day, Holiday or Normal Study Day.
+- Recalculate daily, weekly and monthly attendance summaries when task statuses change.
+
+Display monthly statistics:
+- Study days
+- Missed days
+- Rest days
+- Holidays
+- Completion rate
+- Total study hours
+
+## 9. Festivals and Holidays
+
+Create a Holidays & Festivals manager.
+
+Allow manual entry of:
+- Holiday name
+- Date
+- Description
+- Optional recurring annual date
+- Optional study policy: Full Holiday, Light Study, or Normal Study
+
+Show festivals in the calendar and dashboard.
+
+Allow import/export of holiday data using JSON.
+
+Do not claim to automatically detect every Indian festival. Support manually entered festivals and optional predefined sample dates that the user can verify and edit.
+
+A holiday should not automatically delete or overwrite planned tasks. If the user chooses Light Study, allow reduced targets.
+
+## 10. Charts and Analytics
+
+Use Chart.js to implement functional charts based on stored task data.
+
+Required charts:
+
+1. Daily completion percentage over time.
+2. Planned vs actual study hours.
+3. Subject-wise time distribution.
+4. Weekly completion rate.
+5. Monthly attendance summary.
+6. Subject progress comparison.
+7. Completed vs missed tasks.
+
+Provide date filters:
+- Last 7 days
+- Last 30 days
+- Last 90 days
+- Entire preparation period
+- Custom date range
+
+Charts must update immediately when tasks are completed, edited, deleted or imported.
+
+Include summary cards and readable legends.
+
+Handle empty data gracefully. Never display fabricated progress numbers.
+
+## 11. Preparation Journey: 90–120 Days
+
+Add preparation settings:
+
+- Start date
+- Target date
+- Goal duration: 90, 100, 110 or 120 days
+- Daily study target
+- Weekly study target
+- Rest days
+- Target job role
+- Target locations: Noida and Gurgaon
+
+Allow changing the target duration without deleting existing task history.
+
+Display:
+- Current preparation day
+- Days completed
+- Days remaining
+- Overall task completion rate
+- Weekly consistency
+- Study hours accumulated
+- Remaining planned study hours
+
+Use actual recorded data to calculate progress.
+
+Do not treat merely passing a day as progress; progress must be based on completed tasks or recorded study time.
+
+## 12. LocalStorage Architecture
+
+Use a versioned localStorage data model with a clear namespace, for example:
+
+`preptrack_data_v1`
+
+Store structured JSON data containing:
+
+- App settings
+- Subjects
+- Tasks
+- Daily routine templates
+- Weekly routine templates
+- Calendar annotations
+- Festivals and holidays
+- Study logs
+- User preferences
+- Data schema version
+
+Use separate helper functions for:
+- Loading data
+- Saving data
+- Validating data
+- Updating tasks
+- Deleting tasks
+- Calculating statistics
+- Importing and exporting JSON
+- Migrating older schema versions
+
+Requirements:
+- Persist changes immediately after user actions.
+- Restore the application state after refresh.
+- Validate stored JSON and handle corrupted data gracefully.
+- Provide a safe recovery message if data cannot be loaded.
+- Warn when localStorage is unavailable or full.
+- Do not erase all user data during initialization.
+- Use unique IDs for tasks and records.
+- Use local dates consistently and avoid UTC date-shift bugs.
+- Provide a last-saved timestamp.
+- Keep historical task records when routines are edited.
+- Confirm destructive actions.
+
+## 13. JSON Export and Import
+
+This is a critical feature.
+
+### Export
+
+Add an "Export JSON" button that downloads a valid JSON file containing the user's complete application data.
+
+Example filename:
+
+`preptrack-backup-2026-10-11.json`
+
+Include:
+- Schema version
+- Export timestamp
+- Settings
+- Subjects
+- Tasks
+- Routines
+- Study logs
+- Calendar annotations
+- Festivals and holidays
+
+The downloaded JSON must be usable as a backup and importable later.
+
+Also support:
+- Export tasks only
+- Export study logs only
+- Export calendar and holiday data
+- Export the complete dataset
+
+### Import
+
+Add an "Import JSON" feature with a file picker and drag-and-drop area.
+
+Validate:
+- File extension and JSON syntax
+- Schema version
+- Required fields
+- Data types
+- Unique record IDs
+- Valid dates
+- Valid task statuses
+- Reasonable file size
+
+Provide a preview before applying the import.
+
+Offer these import modes:
+1. Replace All Data
+2. Merge with Existing Data
+3. Import Tasks Only
+4. Import Study Logs Only
+5. Import Calendar and Holidays Only
+
+For merge mode:
+- Detect duplicate IDs.
+- Ask whether to skip duplicates or resolve conflicts.
+- Never silently overwrite existing records.
+- Create a backup of the current data before applying a major import.
+- If validation fails, do not partially import data.
+- Recalculate dashboard metrics after import.
+
+After importing, show a clear success or error notification.
+
+## 14. Reminders and Notifications
+
+Support reminders for scheduled tasks.
+
+Use browser notifications only after the user grants permission.
+
+Provide:
+- Reminder time per task
+- Upcoming task indicator
+- Optional reminder sound
+- In-app reminder notifications
+- Daily target reminder preference
+
+Because this is a static local application, explain that reminders may not fire when the browser is closed. Do not promise reliable background notifications without a backend or installed application.
+
+## 15. Checklist and User Experience
+
+Provide reusable checklists for:
+- Daily tasks
+- Subtasks
+- Weekly goals
+- Day-end review
+- Weekly review
+
+Include:
+- Mark all completed
+- Clear filters
+- Undo accidental completion where feasible
+- Confirm bulk deletion
+- Keyboard-accessible controls
+- Proper labels and accessible contrast
+- Responsive navigation
+- Helpful empty states
+- Toast notifications
+- No dead buttons or placeholder links
+
+Add a daily review form:
+- What did I learn today?
+- What was difficult?
+- What should I revise?
+- What will I improve tomorrow?
+- Confidence rating from 1 to 5
+
+Persist daily reviews in localStorage and include them in full JSON backups.
+
+## 16. Initial Demo Data
+
+Initialize the app with a small, realistic sample dataset based on these subjects:
+
+- English Communication
+- DSA and Pattern Practice
+- SQL
+- Laravel Architecture
+- Laravel Technical and Theoretical Questions
+- Scenario-Based Discussions
+
+Add sample tasks such as:
+- Right Angle Triangle pattern
+- Reverse Right Angle Triangle
+- SQL SELECT and WHERE queries
+- SQL JOIN practice
+- Laravel request lifecycle
+- MVC architecture explanation
+- Synchronous vs asynchronous discussion
+- Checkout performance investigation
+- Database indexing
+- Eloquent N+1 query problem
+
+Clearly label sample data and provide a way to remove it. Never fabricate actual completed tasks, historical attendance, or study hours.
+
+## 17. Implementation Quality and Deliverables
+
+Before finishing, verify:
+
+- Login validation and redirects work.
+- Dashboard access is blocked without a valid client-side session.
+- All task CRUD operations work.
+- Checklist state persists after refresh.
+- Daily and weekly routine generation works.
+- Duplicate task generation is prevented.
+- Calendar status is derived correctly.
+- Holidays and rest days are respected.
+- Charts update from real stored data.
+- JSON export creates a valid downloadable file.
+- JSON import validates and restores the data.
+- Merge and replace modes work correctly.
+- Malformed JSON does not destroy existing data.
+- The UI works on desktop and mobile.
+- No buttons are decorative or nonfunctional.
+- No progress metrics are hardcoded.
+
+Deliver the complete source code for `login.php`, `index.php`, and any supporting CSS and JavaScript files.
+
+Explain the project folder structure, how to run the app locally, demo login credentials, how to export/import JSON, and the limitations of localStorage and static authentication.
+
+Build the application in a polished, production-quality visual style. Prioritize functional correctness, data safety, usability, and a premium interface over unnecessary animations.

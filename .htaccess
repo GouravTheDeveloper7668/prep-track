@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /prep/
+    RewriteRule ^login\.html$ login.php [R=302,L]
+    RewriteRule ^index\.html$ index.php [R=302,L]
+</IfModule>
