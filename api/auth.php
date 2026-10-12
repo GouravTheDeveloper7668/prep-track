@@ -49,25 +49,8 @@ try {
                 jsonResponse(['success' => false, 'message' => 'Invalid username or password.'], 401);
             }
 
-            // Set PHP Session
-            $_SESSION['user_id'] = (int)$user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['full_name'] = $user['full_name'] ?? 'Candidate';
-
-            // Handle Remember Token
-            if ($remember) {
-                $remToken = bin2hex(random_bytes(32));
-                $upStmt = $db->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
-                $upStmt->execute([$remToken, $user['id']]);
-                // Set HTTP-only cookie for 30 days
-                setcookie('pt_rem', $remToken, [
-                    'expires'  => time() + (30 * 86400),
-                    'path'     => '/',
-                    'httponly' => true,
-                    'samesite' => 'Lax'
-                ]);
-            }
+            // Always establish 30-day persistent login session in MySQL and Cookie
+            set30DayLoginSession($user);
 
             jsonResponse([
                 'success' => true,
@@ -131,11 +114,13 @@ try {
             ");
             $subStmt->execute([$newId, $newId, $newId, $newId, $newId, $newId]);
 
-            // Auto-login new user
-            $_SESSION['user_id'] = $newId;
-            $_SESSION['username'] = $username;
-            $_SESSION['email'] = $email;
-            $_SESSION['full_name'] = $fullName;
+            // Auto-login new user with 30-day persistent session
+            set30DayLoginSession([
+                'id' => $newId,
+                'username' => $username,
+                'email' => $email,
+                'full_name' => $fullName
+            ]);
 
             jsonResponse([
                 'success' => true,
@@ -168,24 +153,13 @@ try {
             break;
 
         case 'logout':
-            if (!empty($_SESSION['user_id'])) {
-                // Clear remember token from DB if present
-                $db->prepare("UPDATE users SET remember_token = NULL WHERE id = ?")->execute([$_SESSION['user_id']]);
-            }
+            clearLoginSession($_SESSION['user_id'] ?? null);
 
-            // Wipe session
-            $_SESSION = [];
-            if (ini_get("session.use_cookies")) {
-                $params = session_get_cookie_params();
-                setcookie(session_name(), '', time() - 42000,
-                    $params["path"], $params["domain"],
-                    $params["secure"], $params["httponly"]
-                );
-            }
-            session_destroy();
-
-            // Clear remember cookie
-            setcookie('pt_rem', '', time() - 3600, '/');
+            jsonResponse([
+                'success' => true,
+                'message' => 'Logged out successfully.',
+                'redirect' => 'login.php'
+            ]);
 
             jsonResponse([
                 'success' => true,

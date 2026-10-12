@@ -242,10 +242,10 @@ if (!empty($_SESSION['user_id']) || checkRememberToken()) {
                 </div>
             </div>
 
-            <div id="remGroup" style="margin-bottom: 16px;">
-                <label style="display:flex;gap:8px;align-items:center;cursor:pointer;font-size:0.9em;color:var(--mu);">
-                    <input type="checkbox" name="r" id="rememberMe" checked> Remember session (30 days)
-                </label>
+            <div id="remGroup" style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px; font-size: 0.85em; color: var(--mu);">
+                <i class="fa fa-shield-halved" style="color: var(--ok);"></i>
+                <span><b>Persistent Session:</b> Stays logged in for 30 days unless you logout.</span>
+                <input type="hidden" name="r" id="rememberMe" value="1">
             </div>
 
             <div id="err" class="err-t" role="alert" style="display:none;margin-bottom:14px;padding:10px 14px;border-radius:8px;background:rgba(239,68,68,0.15);border:1px solid #ef4444;color:#ef4444;font-size:0.88em;"></div>
